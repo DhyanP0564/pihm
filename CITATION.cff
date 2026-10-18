@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: >-
+  If you use pihm, please cite it as below, and cite the method it implements
+  (Wu et al., arXiv:2504.13174).
+title: "pihm: physics-informed effective Hamiltonians"
+abstract: >-
+  A Python library for solving differential equations as the ground state of an
+  effective Hamiltonian built from their residual, in the standard form of Wu et al.
+  and a banded descriptor form, verified at the level of operators, circuits and
+  prepared states.
+type: software
+authors:
+  - family-names: Patel
+    given-names: Dhyan
+    affiliation: The University of Western Australia
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/DhyanP0564/pihm"
+url: "https://dhyanp0564.github.io/pihm/"
+references:
+  - type: article
+    title: >-
+      Quantum algorithm for solving nonlinear differential equations based on
+      physics-informed effective Hamiltonians
+    authors:
+      - family-names: Wu
+        given-names: Hsin-Yu
+      - family-names: Paine
+        given-names: Annie E.
+      - family-names: Philip
+        given-names: Evan
+      - family-names: Gentile
+        given-names: Antonio A.
+      - family-names: Kyriienko
+        given-names: Oleksandr
+    year: 2025
+    identifiers:
+      - type: other
+        value: "arXiv:2504.13174"

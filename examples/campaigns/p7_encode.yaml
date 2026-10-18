@@ -1,0 +1,52 @@
+# Run: python examples/run_campaign.py examples/campaigns/p7_encode.yaml --out results/p7_encode
+name: p7_encode
+description: >
+  Pillar 1 circuit records of two-dimensional Navier-Stokes (R10) in the symmetric layout, both
+  forms: probe-verified at the smallest size, construction and gate counts beyond.
+groups:
+  - problems: [R10a-M12, R10c-M12]
+    carleman: 2
+    n: [2]
+    stage: encode
+    regime: standard
+    verify: probe
+    label: probe verification
+    memory: 32
+    hours: 6
+  - problems: [R10a-M12, R10c-M12]
+    carleman: 2
+    n: [2]
+    stage: encode
+    regime: descriptor
+    verify: probe
+    label: probe verification
+    memory: 32
+    hours: 6
+  - problems: [R10c-M12]
+    carleman: [2, 3]
+    n: [3, 4, 5]
+    stage: encode
+    regime: standard
+    verify: none
+    label: construction only
+  - problems: [R10c-M12]
+    carleman: [2, 3]
+    n: [3, 4, 5]
+    stage: encode
+    regime: descriptor
+    verify: none
+    label: construction only
+  - problems: [R10c-M20, R10c-M28]
+    carleman: 2
+    n: [3, 4, 5]
+    stage: encode
+    regime: standard
+    verify: none
+    label: construction only
+  - problems: [R10c-M20, R10c-M28]
+    carleman: 2
+    n: [3, 4, 5]
+    stage: encode
+    regime: descriptor
+    verify: none
+    label: construction only

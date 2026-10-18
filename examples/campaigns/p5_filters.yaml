@@ -1,0 +1,46 @@
+# Run: python examples/run_campaign.py examples/campaigns/p5_filters.yaml --out results/p5_filters
+name: p5_filters
+description: >
+  Descriptor-form filter comparison: QITE and the minimax edge filter held to equal infidelity on
+  R1 and every corrected panel of R2 to R5, block-rescaled, at the resolutions tier T2 reaches.
+groups:
+  - problems: [R1, R2, R4b, R4c, R4d]
+    n: {from: 2, to: 8}
+    stage: filters
+    regime: descriptor
+
+  - problems: [R3a, R3b, R3c, R4a]
+    n: {from: 2, to: 6}
+    stage: filters
+    regime: descriptor
+
+  - problems: [R3d]
+    n: {from: 2, to: 6}
+    stage: filters
+    regime: descriptor
+
+  - problems: [R5a, R5b]
+    n: [2, 3, 4]
+    stage: filters
+    regime: descriptor
+
+  - problems: [R5c]
+    n: [2, 3]
+    stage: filters
+    regime: descriptor
+
+  # the cluster (tasks 82-87).
+  - problems: [R3a, R3b, R3c, R4a]
+    n: [7]
+    stage: filters
+    regime: descriptor
+
+  - problems: [R5b]
+    n: [5]
+    stage: filters
+    regime: descriptor
+
+  - problems: [R5c]
+    n: [4]
+    stage: filters
+    regime: descriptor

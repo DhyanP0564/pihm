@@ -1,0 +1,75 @@
+# Run: python examples/run_campaign.py examples/campaigns/p6_build.yaml --out results/p6
+name: p6_build
+description: >
+  The first-order systems (R7, R8, R9) in both forms: coupled fields with ratio rows, and the
+  Carleman lift swept in its order and the time axis's resolution.
+groups:
+  - problems: [R7]
+    n: {from: 2, to: 9}
+    regime: standard
+  - problems: [R7]
+    n: {from: 2, to: 9}
+    regime: descriptor
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: {from: 3, to: 8}
+    regime: standard
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: {from: 3, to: 8}
+    regime: descriptor
+
+  # R9.
+  - problems: [R9a-M4, R9b-M4, R9c-M4, R9d-M4, R9e-M4]
+    carleman: {from: 2, to: 5}
+    n: {from: 3, to: 5}
+    regime: standard
+  - problems: [R9a-M8, R9b-M8, R9c-M8, R9d-M8, R9e-M8]
+    carleman: {from: 2, to: 3}
+    n: {from: 3, to: 5}
+    regime: standard
+  - problems: [R9a-M8, R9b-M8, R9c-M8, R9d-M8, R9e-M8]
+    carleman: 4
+    n: {from: 3, to: 5}
+    regime: standard
+  - problems: [R9a-M16, R9b-M16, R9c-M16, R9d-M16, R9e-M16]
+    carleman: 2
+    n: {from: 3, to: 5}
+    regime: standard
+  - problems: [R9a-M16, R9b-M16, R9c-M16, R9d-M16, R9e-M16]
+    carleman: 3
+    n: {from: 3, to: 4}
+    regime: standard
+  - problems: [R9a-M4, R9b-M4, R9c-M4, R9d-M4, R9e-M4]
+    carleman: {from: 2, to: 5}
+    n: {from: 3, to: 5}
+    regime: descriptor
+  - problems: [R9a-M8, R9b-M8, R9c-M8, R9d-M8, R9e-M8]
+    carleman: {from: 2, to: 3}
+    n: {from: 3, to: 5}
+    regime: descriptor
+  - problems: [R9a-M8, R9b-M8, R9c-M8, R9d-M8, R9e-M8]
+    carleman: 4
+    n: {from: 3, to: 5}
+    regime: descriptor
+  - problems: [R9a-M16, R9b-M16, R9c-M16, R9d-M16, R9e-M16]
+    carleman: 2
+    n: {from: 3, to: 5}
+    regime: descriptor
+  - problems: [R9a-M16, R9b-M16, R9c-M16, R9d-M16, R9e-M16]
+    carleman: 3
+    n: {from: 3, to: 4}
+    regime: descriptor
+
+  # The chain ablation: each component with its derivative as a block.
+  - problems: [R7]
+    n: {from: 2, to: 9}
+    regime: descriptor
+    layout: chain
+    label: chain
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: {from: 3, to: 8}
+    regime: descriptor
+    layout: chain
+    label: chain

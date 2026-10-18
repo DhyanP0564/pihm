@@ -1,0 +1,32 @@
+# Run: python examples/run_campaign.py examples/campaigns/p5_t3.yaml --out results/p5_t3
+name: p5_t3
+description: >
+  Pillar 2 tier T3 records of the regime comparison: the resources a GQSP preparation needs under
+  the minimax filter for R1 to R5 in the standard and the descriptor form, at n = 2 to 8 on one
+  axis and 2 to 5 per axis on two.
+groups:
+  - problems: [R1, R2, R3, R4]
+    n: {from: 2, to: 8}
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    tier: T3
+
+  - problems: [R5]
+    n: [2, 3, 4, 5]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    tier: T3
+
+  - problems: [R1, R2, R3, R4]
+    n: {from: 2, to: 8}
+    stage: stateprep
+    filter: minimax
+    tier: T3
+
+  - problems: [R5]
+    n: [2, 3, 4, 5]
+    stage: stateprep
+    filter: minimax
+    tier: T3

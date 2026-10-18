@@ -1,0 +1,154 @@
+# Run: python examples/run_campaign.py examples/campaigns/p6_encode.yaml --out results/p6_encode
+name: p6_encode
+description: >
+  Pillar 1 circuit records of the first-order systems (R7, R8's Carleman lifts at K = 2-6 and
+  R9's at a/nu = 1), in both forms, verified against the classically assembled Hamiltonian.
+groups:
+  - problems: [R7]
+    n: [2, 3, 4]
+    stage: encode
+    regime: standard
+    verify: exact
+    label: exact verification
+  - problems: [R7]
+    n: [2, 3, 4]
+    stage: encode
+    regime: descriptor
+    verify: exact
+    label: exact verification
+  - problems: [R7]
+    n: [5]
+    stage: encode
+    regime: standard
+    verify: probe
+    label: probe verification
+  - problems: [R7]
+    n: [5]
+    stage: encode
+    regime: descriptor
+    verify: probe
+    label: probe verification
+
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: [2, 3, 4]
+    stage: encode
+    regime: standard
+    verify: exact
+    label: exact verification
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: [2, 3, 4]
+    stage: encode
+    regime: descriptor
+    verify: exact
+    label: exact verification
+  - problems: [R8]
+    carleman: [2, 3, 4, 5, 6]
+    n: [5]
+    stage: encode
+    regime: standard
+    verify: probe
+    label: probe verification
+  - problems: [R8]
+    carleman: [2, 3, 4, 5, 6]
+    n: [5]
+    stage: encode
+    regime: descriptor
+    verify: probe
+    label: probe verification
+
+  # R9 at a/nu = 1, its coupling as matchings: exact at M = 4, K = 2,
+  # n = 2; construction only beyond, where its alpha and gate count are what the reports read.
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: encode
+    regime: standard
+    verify: exact
+    label: exact verification
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: encode
+    regime: descriptor
+    verify: exact
+    label: exact verification
+  # Probed up to 24 qubits: R9c-M4 at K = 2 and at K = 3 on n = 3, and R9c-M8 at K = 2 (19 to 24).
+  - problems: [R9c-M4, R9c-M8]
+    carleman: 2
+    n: [3, 4]
+    stage: encode
+    regime: standard
+    verify: probe
+    label: probe verification
+  - problems: [R9c-M4]
+    carleman: 3
+    n: [3]
+    stage: encode
+    regime: standard
+    verify: probe
+    label: probe verification
+  - problems: [R9c-M4]
+    carleman: 3
+    n: [4]
+    stage: encode
+    regime: standard
+    verify: none
+    label: construction only
+  - problems: [R9c-M4]
+    carleman: 4
+    n: [3, 4]
+    stage: encode
+    regime: standard
+    verify: none
+    label: construction only
+  - problems: [R9c-M8]
+    carleman: 3
+    n: [3, 4]
+    stage: encode
+    regime: standard
+    verify: none
+    label: construction only
+  - problems: [R9c-M16]
+    carleman: 2
+    n: [3]
+    stage: encode
+    regime: standard
+    verify: none
+    label: construction only
+  - problems: [R9c-M4]
+    carleman: [2, 3]
+    n: [3, 4]
+    stage: encode
+    regime: descriptor
+    verify: probe
+    label: probe verification
+  - problems: [R9c-M8]
+    carleman: 2
+    n: [3, 4]
+    stage: encode
+    regime: descriptor
+    verify: probe
+    label: probe verification
+  - problems: [R9c-M4]
+    carleman: 4
+    n: [3, 4]
+    stage: encode
+    regime: descriptor
+    verify: none
+    label: construction only
+  - problems: [R9c-M8]
+    carleman: 3
+    n: [3, 4]
+    stage: encode
+    regime: descriptor
+    verify: none
+    label: construction only
+  - problems: [R9c-M16]
+    carleman: 2
+    n: [3]
+    stage: encode
+    regime: descriptor
+    verify: none
+    label: construction only

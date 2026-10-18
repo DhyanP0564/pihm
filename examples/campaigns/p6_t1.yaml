@@ -1,0 +1,125 @@
+# Run: python examples/run_campaign.py examples/campaigns/p6_t1.yaml --out results/p6_t1
+name: p6_t1
+description: >
+  Pillar 2 tier T1 records of the first-order systems (R7, R8's Carleman lifts at K = 2 and 3,
+  and R9's smallest), both forms, at n = 2, one run per initial-state candidate, checked against
+  tier T2.
+groups:
+  - problems: [R7]
+    n: [2]
+    stage: stateprep
+    regime: standard
+    tier: T1
+    filter: minimax
+    geometric_r: [0.5]
+    memory: 32
+    hours: 4
+  - problems: [R7]
+    n: [2]
+    stage: stateprep
+    regime: standard
+    tier: T1
+    filter: minimax
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 4
+  - problems: [R7]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    tier: T1
+    filter: minimax
+    geometric_r: [0.5]
+    memory: 32
+    hours: 4
+  - problems: [R7]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    tier: T1
+    filter: minimax
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 4
+  - problems: [R8]
+    carleman: [2, 3]
+    n: [2]
+    stage: stateprep
+    regime: standard
+    tier: T1
+    filter: minimax
+    geometric_r: [0.5]
+    memory: 32
+    hours: 4
+  - problems: [R8]
+    carleman: [2, 3]
+    n: [2]
+    stage: stateprep
+    regime: standard
+    tier: T1
+    filter: minimax
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 4
+  - problems: [R8]
+    carleman: [2, 3]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    tier: T1
+    filter: minimax
+    geometric_r: [0.5]
+    memory: 32
+    hours: 4
+  - problems: [R8]
+    carleman: [2, 3]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    tier: T1
+    filter: minimax
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 4
+
+  # R9 at a/nu = 1, M = 4, K = 2 (19 and 20 qubits with the signal).
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: stateprep
+    regime: standard
+    tier: T1
+    filter: minimax
+    geometric_r: [0.5]
+    memory: 32
+    hours: 4
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: stateprep
+    regime: standard
+    tier: T1
+    filter: minimax
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 4
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    tier: T1
+    filter: minimax
+    geometric_r: [0.5]
+    memory: 32
+    hours: 4
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    tier: T1
+    filter: minimax
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 4

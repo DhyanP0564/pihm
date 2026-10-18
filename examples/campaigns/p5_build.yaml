@@ -1,0 +1,40 @@
+# Run: python examples/run_campaign.py examples/campaigns/p5_build.yaml --out results/p5
+name: p5_build
+description: >
+  The linear panels of the ladder (R1-R5) in the descriptor form, corrected, at the standard
+  form's resolutions, block-rescaled and unscaled, for the cross-regime tables.
+groups:
+  - problems: [R1, R2]
+    n: {from: 2, to: 10}
+    regime: descriptor
+  - problems: [R3, R4]
+    n: {from: 3, to: 10}
+    regime: descriptor
+  - problems: [R5]
+    n: {from: 2, to: 5}
+    regime: descriptor
+
+  # The unscaled ablation. R1 is a first-order equation, carried in mass form with
+  # no derivative block, so it has nothing to rescale.
+  - problems: [R2]
+    n: {from: 2, to: 10}
+    regime: descriptor
+    rescale: none
+    label: unscaled
+  - problems: [R3, R4]
+    n: {from: 3, to: 10}
+    regime: descriptor
+    rescale: none
+    label: unscaled
+  - problems: [R5]
+    n: {from: 2, to: 5}
+    regime: descriptor
+    rescale: none
+    label: unscaled
+
+  # R1's chain ablation: the derivative carried as a block, block-rescaled.
+  - problems: [R1]
+    n: {from: 2, to: 10}
+    regime: descriptor
+    layout: chain
+    label: chain

@@ -1,0 +1,63 @@
+# Run: python examples/run_campaign.py examples/campaigns/p6_t3.yaml --out results/p6_t3
+name: p6_t3
+description: >
+  Pillar 2 tier T3 records of the first-order systems (R7, R8's Carleman lifts at K = 2-6 and
+  R9's at a/nu = 1 and 10),
+  both forms, with the minimax filter: the resources a GQSP preparation needs.
+groups:
+  - problems: [R7]
+    n: {from: 2, to: 9}
+    stage: stateprep
+    regime: standard
+    tier: T3
+    filter: minimax
+  - problems: [R7]
+    n: {from: 2, to: 9}
+    stage: stateprep
+    regime: descriptor
+    tier: T3
+    filter: minimax
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: {from: 3, to: 8}
+    stage: stateprep
+    regime: standard
+    tier: T3
+    filter: minimax
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: {from: 3, to: 8}
+    stage: stateprep
+    regime: descriptor
+    tier: T3
+    filter: minimax
+
+  # R9, p6_stateprep's grid.
+  - problems: [R9c-M4, R9e-M4]
+    carleman: {from: 2, to: 5}
+    n: {from: 3, to: 5}
+    stage: stateprep
+    regime: standard
+    tier: T3
+    filter: minimax
+  - problems: [R9c-M8, R9e-M8]
+    carleman: [2, 3]
+    n: [3, 4]
+    stage: stateprep
+    regime: standard
+    tier: T3
+    filter: minimax
+  - problems: [R9c-M4, R9e-M4]
+    carleman: {from: 2, to: 5}
+    n: {from: 3, to: 5}
+    stage: stateprep
+    regime: descriptor
+    tier: T3
+    filter: minimax
+  - problems: [R9c-M8, R9e-M8]
+    carleman: [2, 3]
+    n: [3, 4]
+    stage: stateprep
+    regime: descriptor
+    tier: T3
+    filter: minimax

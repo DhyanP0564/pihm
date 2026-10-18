@@ -1,0 +1,23 @@
+/* The landing page's lead paragraph. */
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--pst-color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Cards: a quiet lift on hover, titles in the heading colour. */
+.sd-card {
+  transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+.sd-card:hover {
+  transform: translateY(-2px);
+}
+.sd-card .sd-card-title {
+  font-weight: 600;
+}
+
+/* Summary tables in the API pages: keep the name column from wrapping. */
+table.autosummary td:first-child {
+  white-space: nowrap;
+}

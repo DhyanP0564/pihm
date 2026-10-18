@@ -1,0 +1,67 @@
+# Run: python examples/run_campaign.py examples/campaigns/p2_reproduction.yaml --out results/p2
+name: p2_reproduction
+description: >
+  The paper's panels (R2-R6) and R1 in the standard form, faithful and corrected, with the
+  tau-truncation ablation and the discriminating sweeps of the Fig. 5 triage.
+groups:
+  # The ladder, every variant.
+  - problems: [R1, R2]
+    variants: [faithful, corrected]
+    n: {from: 2, to: 10}
+  - problems: [R3, R4]
+    variants: [faithful, corrected]
+    n: {from: 3, to: 10}
+  - problems: [R5]
+    variants: [faithful, corrected]
+    n: {from: 2, to: 6}
+  - problems: [R6]
+    variants: [faithful, corrected]
+    n: {from: 2, to: 5}
+
+  # Drop the top k equation rows so that the kernel is exact (R2 only).
+  - problems: [R2]
+    variants: [faithful]
+    n: {from: 2, to: 10}
+    truncation: tau
+    label: tau ablation
+
+  # Fig. 5 triage: each correction alone.
+  - problems: [R4b, R4c, R4d]
+    variants: [faithful]
+    n: {from: 3, to: 10}
+    modify: {constraints: corrected}
+    label: exact root, Maclaurin source
+  - problems: [R4b, R4c, R4d]
+    variants: [faithful]
+    n: {from: 3, to: 10}
+    modify: {source: chebyshev}
+    label: printed root, Chebyshev source
+
+  # Fig. 5d at the printed n: the Maclaurin order, with the exact root.
+  - problems: [R4d]
+    variants: [corrected]
+    n: [4]
+    modify: {source: "maclaurin:7"}
+    label: exact root, Maclaurin p = 7
+  - problems: [R4d]
+    variants: [corrected]
+    n: [4]
+    modify: {source: "maclaurin:11"}
+    label: exact root, Maclaurin p = 11
+  - problems: [R4d]
+    variants: [corrected]
+    n: [4]
+    modify: {source: "maclaurin:15"}
+    label: exact root, Maclaurin p = 15
+
+  # Fig. 5d: the regular point, which the paper does not print.
+  - problems: [R4d]
+    variants: [faithful, corrected]
+    n: [4, 5, 6]
+    modify: {regular: [0.5]}
+    label: x_s = 0.5
+  - problems: [R4d]
+    variants: [faithful, corrected]
+    n: [4, 5, 6]
+    modify: {regular: [-0.5]}
+    label: x_s = -0.5

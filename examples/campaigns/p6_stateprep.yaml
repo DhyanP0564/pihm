@@ -1,0 +1,184 @@
+# Run: python examples/run_campaign.py examples/campaigns/p6_stateprep.yaml --out results/p6_stateprep
+name: p6_stateprep
+description: >
+  Pillar 2 tier T2 records of the first-order systems (R7, R8's Carleman lifts at K = 2-6 and
+  R9's at a/nu = 1 and 10),
+  both forms, with the minimax filter: the prepared state's infidelity against the physical
+  subspace's classical reference, and its decoded field.
+groups:
+  - problems: [R7]
+    n: {from: 2, to: 7}
+    stage: stateprep
+    regime: standard
+    filter: minimax
+  - problems: [R7]
+    n: {from: 2, to: 9}
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: {from: 3, to: 8}
+    stage: stateprep
+    regime: standard
+    filter: minimax
+  - problems: [R8]
+    carleman: {from: 2, to: 6}
+    n: {from: 3, to: 8}
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+
+  # Every T1 case (p6_t1), one run per initial state: T2's predicted p for the candidate a T1
+  # record simulates.
+  - problems: [R7]
+    n: [2]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+    geometric_r: [0.5]
+    label: per candidate
+  - problems: [R7]
+    n: [2]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+    geometric_r: [-0.5]
+    label: per candidate
+  - problems: [R7]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    geometric_r: [0.5]
+    label: per candidate
+  - problems: [R7]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    geometric_r: [-0.5]
+    label: per candidate
+  - problems: [R8]
+    carleman: [2, 3]
+    n: [2]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+    geometric_r: [0.5]
+    label: per candidate
+  - problems: [R8]
+    carleman: [2, 3]
+    n: [2]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+    geometric_r: [-0.5]
+    label: per candidate
+  - problems: [R8]
+    carleman: [2, 3]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    geometric_r: [0.5]
+    label: per candidate
+  - problems: [R8]
+    carleman: [2, 3]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    geometric_r: [-0.5]
+    label: per candidate
+
+  # The controls, on the same blocks as the geometric state.
+  - problems: [R7]
+    n: [3, 4]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+    kind: uniform
+    label: initial-state control
+  - problems: [R7]
+    n: [3, 4]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    kind: uniform
+    label: initial-state control
+  - problems: [R7]
+    n: [3, 4]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+    kind: random
+    label: initial-state control
+  - problems: [R7]
+    n: [3, 4]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    kind: random
+    label: initial-state control
+
+  # R9 at the headline a/nu = 1 and the diverging a/nu = 10: the preparation
+  # succeeds in both, and only the lift's convergence in K tells them apart.
+  - problems: [R9c-M4, R9e-M4]
+    carleman: {from: 2, to: 5}
+    n: {from: 3, to: 5}
+    stage: stateprep
+    regime: standard
+    filter: minimax
+  - problems: [R9c-M8, R9e-M8]
+    carleman: [2, 3]
+    n: [3, 4]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+  - problems: [R9c-M4, R9e-M4]
+    carleman: {from: 2, to: 5}
+    n: {from: 3, to: 5}
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+  - problems: [R9c-M8, R9e-M8]
+    carleman: [2, 3]
+    n: [3, 4]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+
+  # R9's T1 cases (p6_t1), one run per initial state.
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+    geometric_r: [0.5]
+    label: per candidate
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: stateprep
+    regime: standard
+    filter: minimax
+    geometric_r: [-0.5]
+    label: per candidate
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    geometric_r: [0.5]
+    label: per candidate
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    geometric_r: [-0.5]
+    label: per candidate

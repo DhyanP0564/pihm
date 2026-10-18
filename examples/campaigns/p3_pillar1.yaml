@@ -1,0 +1,102 @@
+# Run: python examples/run_campaign.py examples/campaigns/p3_pillar1.yaml --out results/p3
+name: p3_pillar1
+description: >
+  Standard-form Pillar 1 circuit records (structured G, the lifts M_a, B(x), the sources M_r D0,
+  datum slices, Kronecker products, the product fold, the stacked reflection) for R1 and every
+  panel of R2 to R6, verified against the classically assembled Hamiltonian.
+groups:
+  - problems: [R1]
+    n: [2, 3, 4, 5]
+    stage: encode
+    verify: exact
+    resources: true
+
+  # R2 and R3 in their corrected variants: the circuit verified for Pillar 2.
+  - problems: [R2, R3]
+    variants: [corrected]
+    n: [2, 3]
+    stage: encode
+    verify: exact
+    resources: true
+    label: exact verification
+
+  - problems: [R2, R3]
+    variants: [corrected]
+    n: [4, 5]
+    stage: encode
+    verify: probe
+    resources: true
+    label: probe verification
+
+  # R4 in both variants: the paper's Maclaurin sources and the Chebyshev-accurate ones.
+  - problems: [R4]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: encode
+    verify: exact
+    resources: true
+    label: exact verification
+
+  - problems: [R4a, R4b]
+    variants: [faithful, corrected]
+    n: [4, 5]
+    stage: encode
+    verify: probe
+    resources: true
+    label: probe verification
+  - problems: [R4c, R4d]
+    variants: [corrected]
+    n: [4, 5]
+    stage: encode
+    verify: probe
+    resources: true
+    label: probe verification
+  # The faithful R4c and R4d carry the paper's Maclaurin sources, 25 to 29 qubits at n = 4 and 5.
+  - problems: [R4c, R4d]
+    variants: [faithful]
+    n: [4, 5]
+    stage: encode
+    verify: none
+    resources: true
+    label: construction only
+
+  # R5 (Fig. 6) in both variants: n qubits on each of its two axes (18 qubits at n = 3).
+  - problems: [R5]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: encode
+    verify: exact
+    resources: true
+    label: exact verification
+
+  - problems: [R5]
+    variants: [faithful, corrected]
+    n: [4, 5]
+    stage: encode
+    verify: probe
+    resources: true
+    label: probe verification
+
+  # R6 (Fig. 7) in both variants: the doubled space on 2n qubits (19 at n = 3).
+  - problems: [R6]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: encode
+    verify: exact
+    resources: true
+    label: exact verification
+
+  - problems: [R6]
+    variants: [faithful, corrected]
+    n: [4]
+    stage: encode
+    verify: probe
+    resources: true
+    label: probe verification
+  - problems: [R6]
+    variants: [faithful, corrected]
+    n: [5]
+    stage: encode
+    verify: none
+    resources: true
+    label: construction only

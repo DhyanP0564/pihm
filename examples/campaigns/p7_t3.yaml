@@ -1,0 +1,65 @@
+# Run: python examples/run_campaign.py examples/campaigns/p7_t3.yaml --out results/p7_t3
+name: p7_t3
+description: >
+  Pillar 2 tier T3 records of two-dimensional Navier-Stokes (R10), both forms, with the minimax
+  filter: the resources a GQSP preparation needs, the descriptor in time against the standard
+  form at each Carleman order.
+groups:
+  - problems: [R10a-M12, R10b-M12, R10c-M12, R10d-M12, R10d-M12-W8]
+    carleman: [2, 3]
+    n: [4, 5]
+    stage: stateprep
+    regime: standard
+    tier: T3
+    filter: minimax
+  - problems: [R10a-M12, R10b-M12, R10c-M12, R10d-M12, R10d-M12-W8]
+    carleman: [2, 3]
+    n: [4, 5]
+    stage: stateprep
+    regime: descriptor
+    tier: T3
+    filter: minimax
+  - problems: [R10a-M20, R10c-M20]
+    carleman: [2, 3]
+    n: [4]
+    stage: stateprep
+    regime: standard
+    tier: T3
+    filter: minimax
+  - problems: [R10a-M20, R10c-M20]
+    carleman: [2, 3]
+    n: [4]
+    stage: stateprep
+    regime: descriptor
+    tier: T3
+    filter: minimax
+  - problems: [R10a-M28, R10c-M28, R10a-M48, R10c-M48]
+    carleman: 2
+    n: [4]
+    stage: stateprep
+    regime: standard
+    tier: T3
+    filter: minimax
+  - problems: [R10b-M12, R10c-M12]
+    carleman: 4
+    n: [4, 5]
+    stage: stateprep
+    regime: standard
+    tier: T3
+    filter: minimax
+  - problems: [R10a-M28, R10c-M28, R10a-M48, R10c-M48]
+    carleman: 2
+    n: [4]
+    stage: stateprep
+    regime: descriptor
+    tier: T3
+    filter: minimax
+  - problems: [R10b-M12, R10c-M12]
+    carleman: 4
+    n: [4, 5]
+    stage: stateprep
+    regime: descriptor
+    tier: T3
+    filter: minimax
+    memory: 230
+    hours: 12

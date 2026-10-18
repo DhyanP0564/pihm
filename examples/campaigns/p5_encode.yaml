@@ -1,0 +1,54 @@
+# Run: python examples/run_campaign.py examples/campaigns/p5_encode.yaml --out results/p5_encode
+name: p5_encode
+description: >
+  Descriptor-form Pillar 1 circuit records (the term-IR LCU of the system rows, the sources and
+  constraint rows placed on the field register, the stacked reflection), block-rescaled, for R1 to
+  R5, verified against the classically assembled Hamiltonian.
+groups:
+  - problems: [R1]
+    n: [2, 3, 4, 5]
+    stage: encode
+    regime: descriptor
+    verify: exact
+    resources: true
+
+  - problems: [R2, R3]
+    variants: [corrected]
+    n: [2, 3]
+    stage: encode
+    regime: descriptor
+    verify: exact
+    resources: true
+    label: exact verification
+
+  - problems: [R2, R3]
+    n: [4, 5]
+    stage: encode
+    regime: descriptor
+    verify: probe
+    resources: true
+    label: probe verification
+
+  - problems: [R4]
+    n: [2, 3]
+    stage: encode
+    regime: descriptor
+    verify: exact
+    resources: true
+    label: exact verification
+
+  - problems: [R4]
+    n: [4, 5]
+    stage: encode
+    regime: descriptor
+    verify: probe
+    resources: true
+    label: probe verification
+
+  - problems: [R5]
+    n: [2, 3, 4, 5]
+    stage: encode
+    regime: descriptor
+    verify: none
+    resources: true
+    label: construction only

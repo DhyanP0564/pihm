@@ -1,0 +1,133 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pihm"
+version = "0.1.0"
+description = "Physics-informed effective Hamiltonians: verifiable standard-form and descriptor solvers"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Dhyan Patel" }]
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "numpy==2.4.6",
+    "scipy==1.17.1",
+    "qiskit==2.1.2",
+    "qiskit-aer==0.17.2",
+    "pyyaml==6.0.3",
+]
+
+[project.urls]
+Documentation = "https://dhyanp0564.github.io/pihm/"
+Source = "https://github.com/DhyanP0564/pihm"
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "pytest-xdist==3.8.0",
+    "ruff==0.16.8",
+    "mypy==2.3.1",
+    "scipy-stubs==1.17.1.5",
+    "types-PyYAML==6.0.12.20260906",
+]
+# The documentation site. It imports pihm.plotting and renders the notebooks, so it takes the
+# notebooks extra too.
+docs = [
+    "pihm[notebooks]",
+    "sphinx==9.0.4",
+    "pydata-sphinx-theme==0.22.0",
+    "myst-parser==5.1.0",
+    "myst-nb==1.4.0",
+    "sphinx-design==0.7.0",
+    "sphinx-copybutton==0.5.2",
+    "sphinxcontrib-bibtex==2.7.0",
+]
+# The example notebooks and pihm.plotting, their figures and the solution viewer.
+notebooks = [
+    "matplotlib==3.10.0",
+    "pyparsing==3.3.3",
+    "ipykernel==6.30.0",
+    "ipywidgets==8.1.9",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pihm = ["py.typed"]
+
+# Lint and format.
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F",   # pycodestyle, pyflakes
+    "I",             # import order
+    "B",             # bugbear
+    "UP",            # pyupgrade
+    "D",             # pydocstyle (NumPy convention below)
+    "N",             # pep8-naming
+    "NPY",           # NumPy-specific rules
+    "RUF",           # ruff-specific rules
+    "SIM", "C4",     # simplifications, comprehensions
+    "PT",            # pytest style
+]
+ignore = [
+    "N803", "N806",  # matrices are upper-case by mathematical convention (G, B_tilde, H)
+    "RUF002", "RUF003",  # Unicode maths symbols are deliberate in docstrings and comments
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D100", "D101", "D102", "D103", "D104"]
+"examples/*.py" = ["T20"]
+"notebooks/*.ipynb" = ["RUF001"]
+"src/pihm/pipeline/solutions.py" = ["RUF001"]
+"src/pihm/plotting/solutions.py" = ["RUF001"]
+"tests/unit/test_pipeline_solutions.py" = ["RUF001"]
+
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
+# IPython's display functions, which the solution viewer calls, are not annotated.
+untyped_calls_exclude = ["IPython"]
+files = ["src/pihm", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["qiskit.*", "qiskit_aer.*"]
+ignore_missing_imports = true
+
+# matplotlib and ipywidgets belong to the optional notebooks extra; ipywidgets ships no types.
+[[tool.mypy.overrides]]
+module = ["matplotlib", "matplotlib.*", "ipywidgets", "ipywidgets.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["tests", "src/pihm"]
+addopts = ["-ra", "--strict-markers", "--strict-config", "--doctest-modules", "--import-mode=importlib", "-m", "not slow"]
+doctest_optionflags = ["NORMALIZE_WHITESPACE", "NUMBER"]
+xfail_strict = true
+filterwarnings = [
+    "error",
+    # matplotlib 3.10.0 calls pyparsing's camelCase API, which pyparsing 3.3 deprecates; the
+    # warnings are attributed to matplotlib's modules, or to pyparsing's own for a deprecated keyword.
+    "ignore::DeprecationWarning:matplotlib\\..*",
+    "ignore::DeprecationWarning:pyparsing\\..*",
+]
+markers = [
+    "slow: long-running test, excluded by default (run with -m slow)",
+    "gotcha: regression test for a known numerical pitfall",
+]

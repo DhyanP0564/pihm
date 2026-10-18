@@ -1,0 +1,103 @@
+# Run: python examples/run_campaign.py examples/campaigns/p7_build.yaml --out results/p7
+name: p7_build
+description: >
+  Two-dimensional Navier-Stokes (R10) in both forms: the Taylor-Green vortex and a vortex pair
+  across the lift's convergence boundary, the lift's order swept with the time axis's resolution.
+groups:
+  - problems: [R10a-M12, R10b-M12, R10c-M12, R10d-M12, R10d-M12-W8]
+    carleman: {from: 2, to: 3}
+    n: {from: 3, to: 5}
+    regime: standard
+  - problems: [R10a-M12, R10b-M12, R10c-M12, R10d-M12, R10d-M12-W8]
+    carleman: 4
+    n: {from: 3, to: 4}
+    regime: standard
+  - problems: [R10a-M20, R10b-M20, R10c-M20, R10d-M20, R10d-M20-W8]
+    carleman: {from: 2, to: 3}
+    n: {from: 3, to: 5}
+    regime: standard
+  - problems: [R10a-M28, R10b-M28, R10c-M28, R10d-M28, R10d-M28-W8]
+    carleman: 2
+    n: {from: 3, to: 5}
+    regime: standard
+  - problems: [R10a-M28, R10b-M28, R10c-M28, R10d-M28, R10d-M28-W8]
+    carleman: 3
+    n: {from: 3, to: 4}
+    regime: standard
+  - problems: [R10a-M12, R10b-M12, R10c-M12, R10d-M12, R10d-M12-W8]
+    carleman: {from: 2, to: 3}
+    n: {from: 3, to: 5}
+    regime: descriptor
+  - problems: [R10a-M12, R10b-M12, R10c-M12, R10d-M12, R10d-M12-W8]
+    carleman: 4
+    n: {from: 3, to: 4}
+    regime: descriptor
+  - problems: [R10a-M20, R10b-M20, R10c-M20, R10d-M20, R10d-M20-W8]
+    carleman: {from: 2, to: 3}
+    n: {from: 3, to: 5}
+    regime: descriptor
+  - problems: [R10a-M28, R10b-M28, R10c-M28, R10d-M28, R10d-M28-W8]
+    carleman: 2
+    n: {from: 3, to: 5}
+    regime: descriptor
+  - problems: [R10a-M28, R10b-M28, R10c-M28, R10d-M28, R10d-M28-W8]
+    carleman: 3
+    n: {from: 3, to: 4}
+    regime: descriptor
+
+  # Further: every panel on 48 modes, two on 80, and higher orders on 12 and 20 modes; the
+  # standard form.
+  - problems: [R10a-M48, R10b-M48, R10c-M48, R10d-M48, R10d-M48-W8]
+    carleman: 2
+    n: {from: 3, to: 5}
+    regime: standard
+  - problems: [R10a-M48, R10b-M48, R10c-M48, R10d-M48, R10d-M48-W8]
+    carleman: 3
+    n: [4]
+    regime: standard
+    memory: 230
+    hours: 12
+  - problems: [R10a-M80, R10c-M80]
+    carleman: 2
+    n: [4, 5]
+    regime: standard
+  - problems: [R10b-M12, R10c-M12]
+    carleman: 5
+    n: [4, 5]
+    regime: standard
+    memory: 128
+    hours: 6
+  - problems: [R10b-M20, R10c-M20]
+    carleman: 4
+    n: [4]
+    regime: standard
+    memory: 128
+    hours: 6
+
+  # The same in the descriptor form.
+  - problems: [R10a-M48, R10b-M48, R10c-M48, R10d-M48, R10d-M48-W8]
+    carleman: 2
+    n: {from: 3, to: 5}
+    regime: descriptor
+  - problems: [R10a-M48, R10b-M48, R10c-M48, R10d-M48, R10d-M48-W8]
+    carleman: 3
+    n: [4]
+    regime: descriptor
+    memory: 230
+    hours: 12
+  - problems: [R10a-M80, R10c-M80]
+    carleman: 2
+    n: [4, 5]
+    regime: descriptor
+  - problems: [R10b-M12, R10c-M12]
+    carleman: 5
+    n: [4, 5]
+    regime: descriptor
+    memory: 128
+    hours: 6
+  - problems: [R10b-M20, R10c-M20]
+    carleman: 4
+    n: [4]
+    regime: descriptor
+    memory: 128
+    hours: 6

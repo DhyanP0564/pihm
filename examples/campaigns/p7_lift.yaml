@@ -1,0 +1,67 @@
+# Run: python examples/run_campaign.py examples/campaigns/p7_lift.yaml --out results/p7_lift
+name: p7_lift
+description: >
+  The Carleman lift's coupling in the symmetric and tensor layouts: terms, qubits,
+  alpha against the norm, verification and gate counts, from Burgers' smallest truncation to
+  Navier-Stokes at field scale.
+groups:
+  - problems: [R9c-M4]
+    carleman: 2
+    n: [0]
+    stage: lift
+    lift: tensor
+    verify: exact
+  - problems: [R9c-M4, R9c-M8, R9c-M16]
+    carleman: [2, 3, 4]
+    n: [0]
+    stage: lift
+    lift: tensor
+    verify: ir
+  - problems: [R9c-M4]
+    carleman: [2, 3]
+    n: [0]
+    stage: lift
+    lift: symmetric
+    verify: exact
+  - problems: [R9c-M4, R9c-M8, R9c-M16]
+    carleman: [2, 3, 4]
+    n: [0]
+    stage: lift
+    lift: symmetric
+    verify: ir
+  - problems: [R10c-M12, R10c-M20, R10c-M28, R10c-M48, R10c-M80]
+    carleman: [2, 3]
+    n: [0]
+    stage: lift
+    lift: tensor
+    verify: ir
+  - problems: [R10c-M12, R10c-M28]
+    carleman: 4
+    n: [0]
+    stage: lift
+    lift: tensor
+    verify: ir
+  - problems: [R10c-M12, R10c-M20, R10c-M28, R10c-M48, R10c-M80]
+    carleman: 2
+    n: [0]
+    stage: lift
+    lift: symmetric
+    verify: ir
+  - problems: [R10c-M12, R10c-M20, R10c-M28]
+    carleman: 3
+    n: [0]
+    stage: lift
+    lift: symmetric
+    verify: ir
+  - problems: [R10c-M148, R10c-M316]
+    carleman: 2
+    n: [0]
+    stage: lift
+    lift: tensor
+    verify: ir
+  - problems: [R10c-M148, R10c-M316]
+    carleman: 3
+    n: [0]
+    stage: lift
+    lift: tensor
+    verify: none

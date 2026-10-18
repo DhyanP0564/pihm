@@ -1,0 +1,102 @@
+# Run: python examples/run_campaign.py examples/campaigns/p5_t1.yaml --out results/p5_t1
+name: p5_t1
+description: >
+  Pillar 2 tier T1 records of the regime comparison: the GQSP circuit simulated under the minimax
+  filter for R1 to R5 in both forms, one run per initial-state candidate, checked against tier
+  T2, with a resource estimate before every run.
+groups:
+  - problems: [R1]
+    n: [2, 3, 4]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 4
+
+  - problems: [R1]
+    n: [2, 3, 4]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 4
+
+  - problems: [R2, R3, R4]
+    n: [2, 3]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R2, R3, R4]
+    n: [2, 3]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R5]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    tier: T1
+    geometric_r: [0.5]
+    memory: 64
+    hours: 24
+
+  - problems: [R5]
+    n: [2]
+    stage: stateprep
+    regime: descriptor
+    filter: minimax
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 64
+    hours: 24
+
+  - problems: [R1]
+    n: [2, 3, 4]
+    stage: stateprep
+    filter: minimax
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 4
+
+  - problems: [R1]
+    n: [2, 3, 4]
+    stage: stateprep
+    filter: minimax
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 4
+
+  - problems: [R2, R3, R4, R5]
+    n: [2]
+    stage: stateprep
+    filter: minimax
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R2, R3, R4, R5]
+    n: [2]
+    stage: stateprep
+    filter: minimax
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24

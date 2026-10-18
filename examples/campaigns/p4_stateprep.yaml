@@ -1,0 +1,251 @@
+# Run: python examples/run_campaign.py examples/campaigns/p4_stateprep.yaml --out results/p4
+name: p4_stateprep
+description: >
+  Standard-form Pillar 2 tier T2 records (the QITE filter, GQSP phases, prepared-state
+  infidelity) for R1 and every panel of R2 to R6, checked against the classical reference (for
+  R6, the initial state's projection onto the doubled space's kernel).
+groups:
+  # R1: cheap at every n tested; the full range p3_pillar1's R1 group covers. R1 has only the
+  # corrected variant (it is not one of the paper's own panels).
+  - problems: [R1]
+    n: [2, 3, 4, 5]
+    stage: stateprep
+
+  # R2a, R2b: well conditioned under the paper's own untruncated residual. variants: [corrected]
+  # throughout (matching p3_pillar1.yaml's own precedent) -- the faithful variant keeps the
+  # paper's own rounded constraint points (a question for the reproduction, not for the circuit
+  # or the state preparation), and was measured directly to need a far larger tau.
+  - problems: [R2a, R2b]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    label: paper's own construction
+
+  # R2c: poorly conditioned under the same construction -- recorded as the problem, not hidden.
+  - problems: [R2c]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    label: paper's own construction
+
+  # R2c: the tau-truncation ablation, which resolves the conditioning completely.
+  - problems: [R2c]
+    variants: [corrected]
+    n: [2, 3, 4]
+    stage: stateprep
+    truncation: tau
+    label: tau-truncation ablation
+
+  # R3 (Fig. 4, lifted): the corrected variant, the circuit Pillar 1 verified.
+  - problems: [R3]
+    variants: [corrected]
+    n: [2, 3, 4]
+    stage: stateprep
+    label: paper's own construction
+
+  # R4 (Fig. 5, sources) in both variants, the faithful one being the paper's Maclaurin sources.
+  - problems: [R4a]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: stateprep
+    label: paper's own construction
+
+  - problems: [R4b, R4c, R4d]
+    variants: [faithful, corrected]
+    n: [2, 3, 4]
+    stage: stateprep
+    label: paper's own construction
+
+  # R5 (Fig. 6, two axes, n qubits on each) as far as the filter's 2^20 degree ceiling allows. The
+  # paper's own invariant sets leave the Laplace and wave kernels degenerate (dimension up to 16),
+  # so their gaps close fast: faithful R5a stops at n = 2 (tau ~ 7e11 at n = 3), both variants of
+  # R5c at n = 3 (tau ~ 5e12 at n = 4). The corrected Laplace and the faithful heat equation stop
+  # at n = 3 too (tau ~ 2.9e10 and 4.7e10 at n = 4, both past the ceiling of 1,048,576); the
+  # corrected heat equation runs to n = 4.
+  - problems: [R5a]
+    variants: [faithful]
+    n: [2]
+    stage: stateprep
+    label: paper's own construction
+
+  - problems: [R5a]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    label: paper's own construction
+
+  - problems: [R5b]
+    variants: [corrected]
+    n: [2, 3, 4]
+    stage: stateprep
+    label: paper's own construction
+
+  - problems: [R5b]
+    variants: [faithful]
+    n: [2, 3]
+    stage: stateprep
+    label: paper's own construction
+
+  - problems: [R5c]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: stateprep
+    label: paper's own construction
+
+  # R6 (Fig. 7, the doubled space): imaginary time projects onto the degenerate kernel
+  #, so the filter is built on the gap above it, which closes fast: R6a reaches
+  # n = 3 (degree 486,002), R6b n = 2 (degree 211,721; tau ~ 1e12 at n = 3).
+  - problems: [R6a]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: stateprep
+    label: doubled space
+
+  - problems: [R6b]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    label: doubled space
+
+  # Every T1 case (p4_t1.yaml), one run per initial state: T2's predicted p for the candidate a
+  # T1 record simulated, which the T1 record's measured probability is compared with.
+
+  - problems: [R1]
+    n: [2, 3, 4]
+    stage: stateprep
+    geometric_r: [0.5]
+    label: per candidate
+
+  - problems: [R2, R3]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    geometric_r: [0.5]
+    label: per candidate
+
+  - problems: [R4]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: stateprep
+    geometric_r: [0.5]
+    label: per candidate
+
+  - problems: [R5]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    geometric_r: [0.5]
+    label: per candidate
+
+  - problems: [R5b, R5c]
+    variants: [faithful, corrected]
+    n: [3]
+    stage: stateprep
+    geometric_r: [0.5]
+    label: per candidate
+
+  - problems: [R5a]
+    variants: [corrected]
+    n: [3]
+    stage: stateprep
+    geometric_r: [0.5]
+    label: per candidate
+
+  - problems: [R6]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    geometric_r: [0.5]
+    label: per candidate
+
+  - problems: [R1]
+    n: [2, 3, 4]
+    stage: stateprep
+    geometric_r: [-0.5]
+    label: per candidate
+
+  - problems: [R2, R3]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    geometric_r: [-0.5]
+    label: per candidate
+
+  - problems: [R4]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: stateprep
+    geometric_r: [-0.5]
+    label: per candidate
+
+  - problems: [R5]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    geometric_r: [-0.5]
+    label: per candidate
+
+  - problems: [R5b, R5c]
+    variants: [faithful, corrected]
+    n: [3]
+    stage: stateprep
+    geometric_r: [-0.5]
+    label: per candidate
+
+  - problems: [R5a]
+    variants: [corrected]
+    n: [3]
+    stage: stateprep
+    geometric_r: [-0.5]
+    label: per candidate
+
+  - problems: [R6]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    geometric_r: [-0.5]
+    label: per candidate
+
+  # The controls on the initial state: the uniform state and one random state per
+  # run (drawn from a generator seeded by the run's configuration hash), beside the geometric
+  # state above, for R1 and the corrected variant of every panel of R2 to R6 at the resolutions
+  # T2 reaches. Each reports gamma, p and the infidelity for the same filter.
+  - problems: [R1]
+    n: [2, 3, 4, 5]
+    stage: stateprep
+    kind: uniform
+    label: initial-state control
+
+  - problems: [R2, R3, R4, R5, R6a]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    kind: uniform
+    label: initial-state control
+
+  - problems: [R6b]
+    variants: [corrected]
+    n: [2]
+    stage: stateprep
+    kind: uniform
+    label: initial-state control
+
+  - problems: [R1]
+    n: [2, 3, 4, 5]
+    stage: stateprep
+    kind: random
+    label: initial-state control
+
+  - problems: [R2, R3, R4, R5, R6a]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    kind: random
+    label: initial-state control
+
+  - problems: [R6b]
+    variants: [corrected]
+    n: [2]
+    stage: stateprep
+    kind: random
+    label: initial-state control

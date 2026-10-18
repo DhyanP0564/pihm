@@ -1,0 +1,18 @@
+# Run: python examples/run_campaign.py examples/campaigns/p5_encoders.yaml --out results/p5_encoders
+name: p5_encoders
+description: >
+  The standard form's structured and published encodings of G compared at tier T3: alpha_R, the
+  degree and the total gate count for R2a (Fig. 3b), corrected, at n = 2 to 8.
+groups:
+  - problems: [R2a]
+    n: {from: 2, to: 8}
+    stage: stateprep
+    filter: minimax
+    tier: T3
+
+  - problems: [R2a]
+    n: {from: 2, to: 8}
+    stage: stateprep
+    filter: minimax
+    tier: T3
+    encoder: published

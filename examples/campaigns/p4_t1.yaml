@@ -1,0 +1,136 @@
+# Run: python examples/run_campaign.py examples/campaigns/p4_t1.yaml --out results/p4_t1
+name: p4_t1
+description: >
+  Standard-form Pillar 2 tier T1 records: the GQSP circuit simulated for R1 and every panel of
+  R2 to R6, one run per initial-state candidate, checked against tier T2, with a
+  resource estimate before every run.
+groups:
+  - problems: [R1]
+    n: [2, 3, 4]
+    stage: stateprep
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R1]
+    n: [2, 3, 4]
+    stage: stateprep
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24
+
+  # R2 and R3: corrected constraint points, the circuits Pillar 1 verified.
+  - problems: [R2, R3]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R2, R3]
+    variants: [corrected]
+    n: [2, 3]
+    stage: stateprep
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24
+
+  # R4 (Fig. 5) in both variants.
+  - problems: [R4]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: stateprep
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R4]
+    variants: [faithful, corrected]
+    n: [2, 3]
+    stage: stateprep
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24
+
+  # R5 (Fig. 6), r = 0.5.
+  - problems: [R5]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R5b, R5c]
+    variants: [faithful, corrected]
+    n: [3]
+    stage: stateprep
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R5a]
+    variants: [corrected]
+    n: [3]
+    stage: stateprep
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  # R5 (Fig. 6), r = -0.5.
+  - problems: [R5]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R5b, R5c]
+    variants: [faithful, corrected]
+    n: [3]
+    stage: stateprep
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24
+
+  - problems: [R5a]
+    variants: [corrected]
+    n: [3]
+    stage: stateprep
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24
+
+  # R6 (Fig. 7), r = 0.5.
+  - problems: [R6]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    tier: T1
+    geometric_r: [0.5]
+    memory: 32
+    hours: 24
+
+  # R6 (Fig. 7), r = -0.5.
+  - problems: [R6]
+    variants: [faithful, corrected]
+    n: [2]
+    stage: stateprep
+    tier: T1
+    geometric_r: [-0.5]
+    memory: 32
+    hours: 24

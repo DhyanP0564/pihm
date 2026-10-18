@@ -1,0 +1,62 @@
+# The campaigns and where each one's records go (relative to the repository root).
+#
+#   python examples/run_campaign.py examples/campaigns/p2_reproduction.yaml --out results/p2
+
+campaigns:
+  p2_reproduction: results/p2
+  p3_pillar1: results/p3
+  p4_stateprep: results/p4
+  p4_t1: results/p4_t1
+  p4_t3: results/p4_t3
+  p4_protocol: results/p4_protocol
+  p4_filters: results/p4_filters
+  p5_build: results/p5
+  p5_encode: results/p5_encode
+  p5_stateprep: results/p5_stateprep
+  p5_t1: results/p5_t1
+  p5_t3: results/p5_t3
+  p5_filters: results/p5_filters
+  p5_encoders: results/p5_encoders
+  p6_build: results/p6
+  p6_encode: results/p6_encode
+  p6_stateprep: results/p6_stateprep
+  p6_t3: results/p6_t3
+  p6_t1: results/p6_t1
+  p7_build: results/p7
+  p7_encode: results/p7_encode
+  p7_stateprep: results/p7_stateprep
+  p7_t3: results/p7_t3
+  p7_lift: results/p7_lift
+
+# Earlier sources whose records stand beside this tree's own, by source digest
+# (pipeline.records.source_digest), each with why. The digest covers every file a run imports, so
+# any change to them moves it; a source is listed only when this tree differs from it where none
+# of its records could.
+sources:
+  b72caf8cc1fcd4c9: >-
+    The published records, made on a cluster from 2026-10-01 to 03 by the development tree. This
+    tree differs from it in docstrings, comments, error messages, problem descriptions and run
+    labels; in how the digest finds a module; and in the SVD of a matrix whose workspace a 32-bit
+    LAPACK cannot count, where that source crashed. Every record it made is what this tree
+    computes.
+  1bb4f994c64aa098: >-
+    The published reruns of the largest circuit simulations, on whole nodes. This tree differs from
+    it in docstrings, comments, error messages, problem descriptions and run labels only.
+
+# The key segment of each run label; "" leaves a label out of the key when the run's other
+# segments already tell it apart. A label not listed here becomes its lower-case slug.
+labels:
+  "tau ablation": ""
+  "exact root, Maclaurin source": exact-root
+  "printed root, Chebyshev source": chebyshev-source
+  "exact root, Maclaurin p = 7": maclaurin-7
+  "exact root, Maclaurin p = 11": maclaurin-11
+  "exact root, Maclaurin p = 15": maclaurin-15
+  "x_s = 0.5": xs=0.5
+  "x_s = -0.5": xs=-0.5
+  "paper's own construction": ""
+  "tau-truncation ablation": ""
+  "doubled space": ""
+  "exact verification": ""
+  "construction only": ""
+  "probe verification": ""
