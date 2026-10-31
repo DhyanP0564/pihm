@@ -38,6 +38,7 @@ def test_fig3_panels_match_the_classical_hamiltonian(name: str) -> None:
 
 
 @pytest.mark.parametrize("name", ["R3a", "R3b"])
+@pytest.mark.nightly
 def test_fig4_legendre_panels_match_the_classical_hamiltonian(name: str) -> None:
     """The Legendre panels (lifted, multipliers of degree 2) match, lifted rows included."""
     _check(name, 2)
@@ -61,6 +62,7 @@ def test_fig4_associated_legendre_panels_match_the_classical_hamiltonian(name: s
         ("R4d", "corrected"),
     ],
 )
+@pytest.mark.nightly
 def test_fig5_panels_match_the_classical_hamiltonian(name: str, variant: str) -> None:
     """The sources: the paper's M_{x^p} D0 (faithful) and the Chebyshev loader (corrected)."""
     _check(name, 2, variant)
@@ -75,11 +77,13 @@ def test_fig5_maclaurin_sources_of_degree_5_and_7_match(name: str) -> None:
 
 @pytest.mark.parametrize("variant", ["faithful", "corrected"])
 @pytest.mark.parametrize("name", ["R5a", "R5b", "R5c"])
+@pytest.mark.nightly
 def test_fig6_panels_match_the_classical_hamiltonian(name: str, variant: str) -> None:
     """Laplace, heat and wave on two axes: Kronecker products, and the corrected datum slices."""
     _check(name, (2, 2), variant)
 
 
+@pytest.mark.nightly
 def test_axes_may_take_different_resolutions() -> None:
     """One n per axis: the heat equation at n = (2, 3)."""
     _check("R5b", (2, 3), "corrected")
@@ -93,6 +97,7 @@ def test_the_resolution_must_name_every_axis() -> None:
 
 @pytest.mark.parametrize("variant", ["faithful", "corrected"])
 @pytest.mark.parametrize("name", ["R6a", "R6b"])
+@pytest.mark.nightly
 def test_fig7_panels_match_the_classical_hamiltonian(name: str, variant: str) -> None:
     """The doubled space: every term folded by N_1 or N_x, the copies' blocks side by side."""
     _check(name, 2, variant)

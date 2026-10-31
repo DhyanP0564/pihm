@@ -47,6 +47,7 @@ def catalogue(tmp_path_factory: pytest.TempPathFactory) -> Catalogue:
 
 
 @pytest.mark.parametrize(("name", "n", "carleman"), CASES)
+@pytest.mark.nightly
 def test_every_family_draws_its_fields_moments_and_matrices(
     catalogue: Catalogue, name: str, n: tuple[int, ...], carleman: int | None
 ) -> None:

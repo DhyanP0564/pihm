@@ -30,6 +30,7 @@ def test_structured_derivative_encoding_is_exact(n: int) -> None:
 
 
 @pytest.mark.parametrize("n", range(2, 7))
+@pytest.mark.nightly
 def test_published_derivative_encoding_matches_its_own_error_bound(n: int) -> None:
     """Measured entrywise error stays within derivative_ladder_error_bound's prediction.
 
@@ -46,6 +47,7 @@ def test_published_derivative_encoding_matches_its_own_error_bound(n: int) -> No
     assert measured <= bound
 
 
+@pytest.mark.nightly
 def test_published_derivative_encoding_error_decreases_with_n() -> None:
     """The entrywise error shrinks sharply with n (the paper's own "exponentially decreasing")."""
     errors = []

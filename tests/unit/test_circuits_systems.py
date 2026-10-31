@@ -30,6 +30,7 @@ CASES = [
 
 
 @pytest.mark.parametrize(("name", "order", "regime"), CASES)
+@pytest.mark.nightly
 def test_the_reflection_encodes_the_assembled_hamiltonian(
     name: str, order: int | None, regime: str
 ) -> None:
@@ -92,6 +93,7 @@ def test_a_coupling_matrix_is_encoded_exactly_as_matchings() -> None:
     assert encoding.alpha < field_encoding(F, 4).alpha
 
 
+@pytest.mark.nightly
 def test_r9s_descriptor_encodes_its_residual() -> None:
     """R9c-M4 at K = 2, n = 2: U_R's Gram matrix is the assembled R^T R."""
     problem = ladder.problem("R9c-M4")

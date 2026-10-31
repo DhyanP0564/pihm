@@ -70,6 +70,7 @@ def test_t3_rejects_too_few_sample_points() -> None:
         t3(problem("R1"), 5, sample_n=(3,))
 
 
+@pytest.mark.nightly
 def test_direct_t3_measures_alpha_and_the_gap_at_n_itself() -> None:
     """Direct: alpha_R and the gap are t2's own at n; p is the tau -> infinity limit of t2's."""
     direct = t3(problem("R3c", "corrected"), 3)
@@ -123,6 +124,7 @@ def test_direct_t3_gives_the_minimax_filter_s_exact_degree() -> None:
     assert estimate.degree == prepared.filter.degree
 
 
+@pytest.mark.nightly
 def test_t3_costs_the_published_encoding_from_its_own_circuit() -> None:
     r2a = problem("R2a", "corrected")
     structured, published = t3(r2a, 3), t3(r2a, 3, encoder="published")
@@ -144,6 +146,7 @@ def test_the_ideal_degree_takes_the_encodings_looseness_out(regime: str) -> None
     assert result.degree / result.ideal_degree == pytest.approx(looseness, rel=0.05)
 
 
+@pytest.mark.nightly
 def test_the_fitted_ideal_degree_keeps_the_largest_samples_looseness() -> None:
     direct = t3(problem("R2a", "corrected"), 5, regime="descriptor", filter="minimax")
     fitted = t3(

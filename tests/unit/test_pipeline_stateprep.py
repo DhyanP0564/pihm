@@ -95,6 +95,7 @@ def test_a_t1_run_over_its_budget_is_recorded_as_infeasible(
     assert record.metrics["budget_source"] == "override"
 
 
+@pytest.mark.nightly
 def test_a_readout_run_records_the_field_and_its_agreement_with_t2() -> None:
     spec = RunSpec(problem=problem("R1"), n=(2,), stage="readout", tier="T1", shots=1000)
     record = run(spec)
@@ -112,6 +113,7 @@ def test_a_readout_run_rejects_a_non_geometric_initial_state() -> None:
     assert "geometric" in record.error
 
 
+@pytest.mark.nightly
 def test_one_candidate_per_run_keeps_what_one_run_over_both_keeps() -> None:
     """Split by initial state, the kept record is the run over both candidates, to the bit."""
     both = run(RunSpec(problem=problem("R1"), n=(2,), stage="stateprep", tier="T1"))
@@ -126,6 +128,7 @@ def test_one_candidate_per_run_keeps_what_one_run_over_both_keeps() -> None:
     assert both.config_hash not in {record.config_hash for record in alone}
 
 
+@pytest.mark.nightly
 def test_a_doubled_space_run_records_its_kernel_and_the_product_state() -> None:
     """The doubled space's record: its kernel, the exact target's residual, the product fidelity."""
     record = run(RunSpec(problem=problem("R6a", "corrected"), n=(2,), stage="stateprep"))
@@ -151,6 +154,7 @@ def test_a_t3_run_records_the_estimate_at_its_resolution() -> None:
     assert record.metrics["gate_count"] > 0
 
 
+@pytest.mark.nightly
 def test_a_linear_t2_run_checks_its_field_against_the_bound() -> None:
     """The field check: the decoded field within eps_disc plus the readout bound."""
     record = run(RunSpec(problem=problem("R3a", "corrected"), n=(3,), stage="stateprep"))
@@ -200,6 +204,7 @@ def test_a_linear_t2_run_records_its_error_budget() -> None:
     assert metrics["budget_phases"] < metrics["budget_truncation"] < metrics["budget_filter"]
 
 
+@pytest.mark.nightly
 def test_the_field_bound_holds_where_the_infidelity_rounds_to_zero() -> None:
     # R5a in the descriptor at n = 3 per axis prepares its state so well that 1 - |<a|b>|² rounds
     # to zero; the state is still 2.4e-8 away, which the bound must count.

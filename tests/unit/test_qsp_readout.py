@@ -33,6 +33,7 @@ def test_the_combiner_holds_the_prepared_state_and_the_combined_state() -> None:
 
 
 @pytest.mark.parametrize("n", [2, 3])
+@pytest.mark.nightly
 def test_t1_reads_out_what_t2_does(n: int) -> None:
     # The combination is an identity, not an approximation: T1 with exact probabilities equals
     # the exact overlap to rounding, field and eta alike, although p_G < 1.
@@ -52,6 +53,7 @@ def test_t2_recovers_the_field_and_its_own_regular_datum() -> None:
     assert np.max(np.abs(result.field - result.reference)) < 1e-4
 
 
+@pytest.mark.nightly
 def test_sampled_probabilities_scatter_about_the_exact_field() -> None:
     p = problem("R1")
     result = readout(p, 2, tier="T1", shots=200_000, rng=np.random.default_rng(1))

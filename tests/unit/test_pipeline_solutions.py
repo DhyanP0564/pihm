@@ -81,6 +81,7 @@ def test_each_rung_is_drawn_by_its_family(name: str, expected: str) -> None:
     assert family(problem(name)) == expected
 
 
+@pytest.mark.nightly
 def test_a_case_finds_each_stages_record_in_both_forms(catalogue: Catalogue) -> None:
     assert catalogue.problems() == ["R1", "R7"]
     records = catalogue.case(CaseKey("R1", 3))

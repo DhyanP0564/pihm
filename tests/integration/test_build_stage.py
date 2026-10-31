@@ -46,6 +46,7 @@ CASES = [
 
 
 @pytest.mark.parametrize(("name", "variant"), CASES)
+@pytest.mark.nightly
 def test_rung_runs_end_to_end(name: str, variant: Variant, tmp_path: Path) -> None:
     problem = ladder.problem(name, variant)
     rung = ladder.rung(name)

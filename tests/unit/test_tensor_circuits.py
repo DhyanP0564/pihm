@@ -75,6 +75,7 @@ def test_a_multiplier_is_its_magnitude_on_the_truncation_and_zero_elsewhere() ->
 
 
 @pytest.mark.parametrize("order", [1, 2])
+@pytest.mark.nightly
 def test_the_encoding_is_the_lift_on_the_physical_states_with_no_leak(order: int) -> None:
     """Exact on R9's smallest truncation, with the lift's scale on F_2."""
     galerkin = burgers_galerkin(2, 1.0, 1.0)

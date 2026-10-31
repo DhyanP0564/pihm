@@ -17,6 +17,7 @@ from pihm.qsp.prepare import t1, t2
 
 
 @pytest.mark.parametrize("n", [2, 3])
+@pytest.mark.nightly
 def test_t1_agrees_with_t2_for_r1(n: int) -> None:
     # The acceptance bar: T1 vs T2 state difference <= 1e-10.
     result = t1(problem("R1"), n, geometric_r=(-0.5,))

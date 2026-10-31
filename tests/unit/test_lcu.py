@@ -68,6 +68,7 @@ def test_a_shift_with_an_overflow_qubit_is_the_truncated_shift(
         ("R5c", (1, 1)),
     ],
 )
+@pytest.mark.nightly
 def test_the_compiled_bands_are_the_ir_s_bands(
     name: str, ns: tuple[int, ...], rescale: str
 ) -> None:
@@ -144,6 +145,7 @@ def test_each_constraint_block_is_its_assembled_rows(name: str, n: int) -> None:
 
 
 @pytest.mark.parametrize("name", ["R2a", "R3a", "R4a"])
+@pytest.mark.nightly
 def test_the_reflection_encodes_the_rescaled_hamiltonian(name: str) -> None:
     """V's block is 2H/alpha_R^2 - I for H = (RS)^T RS, on the state's register."""
     p = ladder.problem(name, "corrected")
@@ -154,6 +156,7 @@ def test_the_reflection_encodes_the_rescaled_hamiltonian(name: str) -> None:
     np.testing.assert_allclose(top_left_block(V), expected, atol=1e-10)
 
 
+@pytest.mark.nightly
 def test_the_unscaled_ablation_encodes_its_own_hamiltonian() -> None:
     p = ladder.problem("R2c", "corrected")
     stacked, V = encode_descriptor_linear(p, 2, rescale="none")

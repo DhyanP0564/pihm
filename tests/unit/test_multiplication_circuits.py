@@ -48,6 +48,7 @@ def test_embed_is_m1(n: int) -> None:
     ids=["-2x", "1-x^2", "(1-x^2)^2", "mixed"],
 )
 @pytest.mark.parametrize("n", [2, 3])
+@pytest.mark.nightly
 def test_multiplication_encoding_is_the_exact_lift(coefficients: tuple[float, ...], n: int) -> None:
     """M_a from n to n+1 qubits matches operators.multiplication(mode='lift') exactly."""
     Ma = multiplication_encoding(coefficients, n)

@@ -29,6 +29,7 @@ def test_state_distance_resolves_below_the_overlap_form() -> None:
 
 
 @pytest.mark.parametrize(("name", "n"), [("R1", 3), ("R2a", 3), ("R3a", 3)])
+@pytest.mark.nightly
 def test_the_budget_closes_on_well_resolved_problems(name: str, n: int) -> None:
     result = t2(problem(name), n)
     budget = state_budget(result)
