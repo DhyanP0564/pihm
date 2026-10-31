@@ -137,10 +137,10 @@ def test_qite_coefficients_refuses_a_tau_beyond_any_allowed_degree_at_once() -> 
 @pytest.mark.parametrize("a", [1.0e2, 1.0e6, 1.0e9])
 def test_the_fft_bessel_values_match_ive_to_rounding(a: float) -> None:
     # The fallback against scipy's own values where both exist: absolute, since the far tail's
-    # values are below any relative resolution.
+    # values are below any relative resolution. A few eps: 4e-17 on macOS, 2.4e-16 on Linux.
     kmax = int(12.0 * np.sqrt(a)) + 10
     fft = _exp_scaled_bessel_i_fft(a, kmax)
-    assert np.max(np.abs(fft - ive(np.arange(kmax + 1), a))) < 2e-16
+    assert np.max(np.abs(fft - ive(np.arange(kmax + 1), a))) < 4 * np.finfo(float).eps
 
 
 @pytest.mark.parametrize("a", [2.0e9, 5.0e9])
