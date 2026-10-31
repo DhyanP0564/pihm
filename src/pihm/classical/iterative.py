@@ -101,7 +101,8 @@ def start_vector(size: int, dtype: np.dtype[Any] | type) -> NDArray[Any]:
     It has a component on every singular vector, as a start must for Lanczos to meet every
     singular value. A structured start need not: a residual that commutes with a permutation of
     its columns keeps the uniform vector in one symmetry sector, and Lanczos from it never meets
-    the others' singular values (on R10's Taylor–Green vortex, 9 of the lowest 17).
+    the others' singular values (on R10's Taylor–Green vortex a uniform start missed 9 of the
+    lowest 17 in our reference runs; no test asserts this).
     """
     vector: NDArray[Any] = np.random.default_rng(START_SEED).standard_normal(size).astype(dtype)
     return vector
