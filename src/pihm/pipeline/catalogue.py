@@ -7,7 +7,9 @@ numbers from it.
 
 Keys
 ----
-A run's key reads like its record directory without the hash (:func:`run_key`)::
+A run's key is built from its specification (:func:`run_key`): it resembles the record's path,
+``<stage>/<problem>/<regime>-n<size>-<hash>``, but adds the variant, the tier and every non-default
+option, and drops the hash::
 
     <stage>/<problem>[/faithful]/<regime>/n<size>[/<tier>][/<option>=<value>...][/<label>]
 
