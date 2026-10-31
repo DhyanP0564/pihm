@@ -296,6 +296,7 @@ def test_the_scaled_lift_is_a_diagonal_similarity_of_the_unscaled_one() -> None:
 
 
 @pytest.mark.parametrize("regime", ["standard", "descriptor"])
+@pytest.mark.nightly
 def test_a_scaled_lift_reads_out_the_unscaled_lifts_field(regime: str) -> None:
     """The decoded field is the unscaled truncated lift's, exponentiated apart (R9e-M4, K = 3)."""
     from scipy.sparse.linalg import expm_multiply

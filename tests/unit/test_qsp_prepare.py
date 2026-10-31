@@ -113,6 +113,7 @@ def test_t2_r2c_is_poorly_conditioned_by_default_but_tau_truncation_fixes_it() -
     assert truncated.infidelity < 1e-8
 
 
+@pytest.mark.nightly
 def test_t2_projects_onto_the_doubled_kernel() -> None:
     """R6a: the filter's gap is above the kernel; T2 prepares phi_0's projection onto it."""
     result = t2(problem("R6a", "corrected"), 2)
@@ -145,6 +146,7 @@ def test_paper_imaginary_time_is_the_paper_rule_on_this_filter() -> None:
 
 
 @pytest.mark.parametrize(("name", "n"), [("R1", 3), ("R2a", 3), ("R3a", 2), ("R6a", 2), ("R4d", 3)])
+@pytest.mark.nightly
 def test_t2_infidelity_is_within_its_a_priori_bound(name: str, n: int) -> None:
     # The predicted bound, from the spectrum's edge, gamma, tau and the tail only;
     # R3a at n = 2 has its ground state 0.56 gaps above -1, R6a a ten-dimensional kernel.
@@ -227,6 +229,7 @@ def test_t2_prepares_a_system_within_its_bound(name: str, order: int | None, reg
     assert result.infidelity <= result.infidelity_bound
 
 
+@pytest.mark.nightly
 def test_t2_prepares_a_strong_lift_within_epsilon_once_its_levels_are_scaled() -> None:
     """At a/nu = 10 the level-one initial state reaches the scaled lift's ground."""
     result = t2(problem("R9e-M4"), 3, regime="descriptor", carleman=4, filter="minimax")

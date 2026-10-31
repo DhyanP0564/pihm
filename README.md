@@ -94,8 +94,9 @@ open build/docs/index.html
 ## Tests
 
 ```bash
-pytest              # fast tests
-pytest -m slow      # long-running tests
+pytest                                # fast tests
+pytest -m "not slow and not nightly"  # a quicker pass that also skips the slower tests
+pytest -m slow                        # long-running tests
 ```
 
 ## Citing

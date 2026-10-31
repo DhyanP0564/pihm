@@ -37,6 +37,7 @@ def _base() -> Problem:
 
 
 @pytest.mark.parametrize(("name", "variant"), ALL)
+@pytest.mark.nightly
 def test_yaml_round_trip_and_digest(name: str, variant: str) -> None:
     problem = ladder.problem(name, variant)
     text = problem.to_yaml()
@@ -47,6 +48,7 @@ def test_yaml_round_trip_and_digest(name: str, variant: str) -> None:
     assert yaml.safe_load(text) == problem.to_dict()
 
 
+@pytest.mark.nightly
 def test_digests_are_distinct_and_track_every_value() -> None:
     digests = {ladder.problem(n, v).digest for n, v in ALL}
     assert len(digests) == len(ALL)

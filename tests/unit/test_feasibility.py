@@ -110,6 +110,7 @@ def test_without_an_allocation_the_budget_is_the_machine() -> None:
     assert budget.source == "machine"
 
 
+@pytest.mark.nightly
 def test_the_memory_model_matches_a_fresh_process() -> None:
     """The model's peak is within a few per cent above what 22-qubit steps actually reach.
 

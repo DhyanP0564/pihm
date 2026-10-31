@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import dataclasses
 
+import pytest
+
 from pihm.pipeline.spec import RunSpec
 from pihm.pipeline.stages import run
 from pihm.problems.ladder import problem
@@ -35,6 +37,7 @@ def test_encode_run_matches_the_classical_hamiltonian_exactly() -> None:
     )
 
 
+@pytest.mark.nightly
 def test_a_descriptor_encode_run_verifies_its_rescaled_hamiltonian() -> None:
     spec = RunSpec(problem=problem("R2a", "corrected"), n=(2,), stage="encode", regime="descriptor")
     record = run(spec)

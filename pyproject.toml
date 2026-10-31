@@ -129,5 +129,6 @@ filterwarnings = [
 ]
 markers = [
     "slow: long-running test, excluded by default (run with -m slow)",
+    "nightly: slower test (over about 5 s); skip with -m \"not slow and not nightly\" for a quick run",
     "gotcha: regression test for a known numerical pitfall",
 ]

@@ -29,6 +29,7 @@ ROUNDED = {"R4a": 5e-3, "R4b": 3e-3, "R4c": 1e-2, "R4d": 5e-2, "R6b": 1e-6}
 
 
 @pytest.mark.parametrize(("name", "variant"), ALL)
+@pytest.mark.nightly
 def test_every_reference_satisfies_its_problem(name: str, variant: str) -> None:
     """The transcription check that the plan wanted from sympy, done numerically.
 

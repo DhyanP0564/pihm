@@ -48,8 +48,9 @@ the SVD's noise floor with absolute tolerances for this reason.
 
 ```bash
 pip install -e ".[dev]"
-pytest              # the fast tests
-pytest -m slow      # the long-running ones
+pytest                                # the fast tests
+pytest -m "not slow and not nightly"  # a quicker pass, skipping the slower ones too
+pytest -m slow                        # the long-running ones
 ```
 
 `pytest` also runs the examples in the docstrings, so every example in the
