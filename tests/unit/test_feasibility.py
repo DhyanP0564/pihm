@@ -125,8 +125,13 @@ def test_the_memory_model_matches_a_fresh_process() -> None:
         from pihm.circuits.primitives import compile_circuit, evolve
 
         def peak():
-            r = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-            return r if platform.system() == "Darwin" else r * 1024
+            if platform.system() == "Darwin":
+                return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+            # Linux keeps ru_maxrss across execve, so it would carry the pytest worker's own
+            # peak; VmHWM is this process's alone.
+            with open("/proc/self/status") as status:
+                line = next(row for row in status if row.startswith("VmHWM:"))
+            return int(line.split()[1]) * 1024
 
         q = 22
         qc = QuantumCircuit(q)

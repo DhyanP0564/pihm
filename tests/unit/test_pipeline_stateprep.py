@@ -207,6 +207,8 @@ def test_the_field_bound_holds_where_the_infidelity_rounds_to_zero() -> None:
         problem=problem("R5a", "corrected"), n=(3, 3), stage="stateprep", regime="descriptor"
     )
     metrics = run(spec).metrics
-    assert metrics["infidelity"] == 0.0
+    # Rounding level only: 0 on macOS, 4e-16 to 1.3e-15 across Linux runs. The distance's own
+    # square is about 6e-16, so 1 - |<a|b>|^2 cannot resolve it.
+    assert metrics["infidelity"] < 1e-14
     assert metrics["state_deviation"] > 1e-9
     assert metrics["field_within_bound"] is True
